@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('phonebook');
 });
+
+Route::get('/{any}',function(){
+	return view('phonebook');
+})->where('any','[A-Za-z]+');
