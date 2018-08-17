@@ -9,7 +9,7 @@
 		    <section class="modal-card-body">
 		    	<label>Name</label>
 		      	<div class="control has-icons-left has-icons-right">
-				  <input class="input is-medium" type="email" placeholder="Name">
+				  <input class="input is-medium" type="email" placeholder="Name"  v-model="contact.name">
 				  <span class="icon is-left">
 				    <i class="fas fa-user"></i>
 				  </span>
@@ -17,7 +17,7 @@
 				</div>
 		    	<label>Phone number</label>
 		      	<div class="control has-icons-left has-icons-right">
-				  <input class="input is-medium" type="email" placeholder="Phone number ...">
+				  <input class="input is-medium" type="email" placeholder="Phone number ..." v-model="contact.phone">
 				  <span class="icon is-left">
 				    <i class="fas fa-phone"></i>
 				  </span>
@@ -25,7 +25,7 @@
 				</div>
 		    	<label>Email</label>
 		      	<div class="control has-icons-left has-icons-right">
-				  <input class="input is-medium" type="email" placeholder="Email">
+				  <input class="input is-medium" type="email" placeholder="Email"  v-model="contact.email">
 				  <span class="icon is-left">
 				    <i class="fas fa-envelope"></i>
 				  </span>
@@ -33,7 +33,7 @@
 				</div>
 		    </section>
 		    <footer class="modal-card-foot">
-		      <button class="button is-success">Add contact</button>
+		      <button class="button is-success" @click="save">Add contact</button>
 		      <button class="button" @click="close" >Cancel</button>
 		    </footer>
 	  	</div>
@@ -42,10 +42,27 @@
 <script>
 	export default {
 		props:['openmodal'],
+		data (){
+			return {
+				contact:{
+					name:'',
+					phone:'',
+					email:''
+				}
+			}
+		}
+		,
 		methods:{
 			close:function(){
 				
 				this.$emit('closeModal');
+			},
+			save:function(){
+				axios.post('/phonebook',this.$data.contact).then((response)=>{
+					console.log(response);
+				}).catch((error)=>{
+					console.log(error);
+				})
 			}
 		}
 	}
