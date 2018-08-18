@@ -4,6 +4,12 @@
 	<title>Phone book</title>
 	<link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	 <script>
+        // rename myToken as you like
+        window.myToken =  <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+        </script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 <body>

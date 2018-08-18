@@ -13,7 +13,7 @@
 				  <span class="icon is-left">
 				    <i class="fas fa-user"></i>
 				  </span>
-				  
+				  <span class="has-text-danger" v-for="error in errors.name">{{error}}</span>
 				</div>
 		    	<label>Phone number</label>
 		      	<div class="control has-icons-left has-icons-right">
@@ -21,7 +21,7 @@
 				  <span class="icon is-left">
 				    <i class="fas fa-phone"></i>
 				  </span>
-				  
+				   <span class="has-text-danger" v-for="error in errors.phone">{{error}}</span>
 				</div>
 		    	<label>Email</label>
 		      	<div class="control has-icons-left has-icons-right">
@@ -29,7 +29,7 @@
 				  <span class="icon is-left">
 				    <i class="fas fa-envelope"></i>
 				  </span>
-				  
+				   <span class="has-text-danger" style="display:block;" v-for="error in errors.email">{{error}}</span>
 				</div>
 		    </section>
 		    <footer class="modal-card-foot">
@@ -37,7 +37,7 @@
 		      <button class="button" @click="close" >Cancel</button>
 		    </footer>
 	  	</div>
-	</div>
+		</div>
 </template>
 <script>
 	export default {
@@ -45,6 +45,12 @@
 		data (){
 			return {
 				contact:{
+					name:'',
+					phone:'',
+					email:''
+				},
+				errors:{
+					
 					name:'',
 					phone:'',
 					email:''
@@ -59,11 +65,22 @@
 			},
 			save:function(){
 				axios.post('/phonebook',this.$data.contact).then((response)=>{
-					console.log(response);
+					
+					this.$emit('closeModal');
 				}).catch((error)=>{
-					console.log(error);
-				})
+					this.errors=error.response.data.errors;		
+
+				});
+				this.$root.$emit('home') //like this
 			}
+		},
+		mounted(){
+			
 		}
 	}
 </script>
+<style scoped>
+.has-text-danger{
+		display: block;
+	}
+</style>

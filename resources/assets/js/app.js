@@ -16,6 +16,7 @@ let Home=require('./components/home.vue');
 let About=require('./components/about.vue');
 
 
+
 const routes = [
   { path: '/home', component: Home },
    { path: '/', component: Home },

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Contact;
+use App\Http\Requests\ContactRequest;
 class PhoneBookController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class PhoneBookController extends Controller
      */
     public function index()
     {
-        //
+        return Contact::orderBy('id')->get();
     }
 
     /**
@@ -32,7 +33,7 @@ class PhoneBookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         $request->only('name','phone','email');
         $contact=Contact::create($request->all());
@@ -47,7 +48,8 @@ class PhoneBookController extends Controller
      */
     public function show($id)
     {
-        //
+        $contact=Contact::findOrFail($id);
+        return $contact;
     }
 
     /**
@@ -68,9 +70,15 @@ class PhoneBookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ContactRequest $request)
     {
-        //
+       $request->only('id','name','phone','email');
+       $contact=Contact::findOrFail($request->id);
+       $contact->name=$request->name;
+       $contact->email=$request->email;
+       $contact->phone=$request->phone;
+       $contact->save();
+       return "Updated";
     }
 
     /**
@@ -81,6 +89,7 @@ class PhoneBookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact=Contact::findOrFail($id)->delete();
+        return "Done";
     }
 }
