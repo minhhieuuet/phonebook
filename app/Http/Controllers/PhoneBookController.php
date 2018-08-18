@@ -14,9 +14,12 @@ class PhoneBookController extends Controller
      */
     public function index()
     {
-        return Contact::orderBy('id')->get();
+        return view('phonebook');
     }
 
+    public function list(){
+        return Contact::orderBy('id')->get();
+    }
     /**
      * Show the form for creating a new resource.
      *

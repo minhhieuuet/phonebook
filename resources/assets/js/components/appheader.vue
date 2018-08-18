@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar  is-info" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="">
+    <a class="navbar-item" href="/">
       <img src="https://www.freepnglogos.com/uploads/eagles-png-logo/eagle-sports-png-logos--0.png" alt="MinhHieuUet" width="112" height="28">
     </a>
 

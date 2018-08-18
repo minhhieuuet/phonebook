@@ -46498,7 +46498,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "navbar-brand" }, [
-      _c("a", { staticClass: "navbar-item", attrs: { href: "" } }, [
+      _c("a", { staticClass: "navbar-item", attrs: { href: "/" } }, [
         _c("img", {
           attrs: {
             src:
@@ -46873,7 +46873,7 @@ var Edit = __webpack_require__(88);
     getContacts: function getContacts() {
       var _this = this;
 
-      axios.get('/phonebook').then(function (response) {
+      axios.get('/phonebook/list').then(function (response) {
         _this.contacts = response.data;
       }).catch(function (error) {
         console.log(error);

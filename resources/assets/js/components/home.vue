@@ -81,7 +81,7 @@ export default {
     getContacts:function(){
       
 
-      axios.get('/phonebook').then((response)=>{
+      axios.get('/phonebook/list').then((response)=>{
         this.contacts=response.data;
       
       }).catch((error)=>{

@@ -14,9 +14,10 @@
 Route::get('/', function () {
     return view('phonebook');
 });
-
-Route::get('/phonebook/{any}',function(){
+Route::get('phonebook/list','PhoneBookController@list');
+Route::resource('phonebook','PhoneBookController');
+Route::get('/{any}',function(){
 	return view('phonebook');
 })->where('any','[A-Za-z]+');
 
-Route::resource('phonebook','PhoneBookController');
+
